@@ -161,6 +161,7 @@ for driver in `echo ${drivers} | sed -e 's/,/ /g' -e 's/,$//g'`; do
 		vfs0090)
 			AC_DEFINE([ENABLE_VFS0090], [], [Build Validity VFS0090 driver])
 			enable_vfs0090="yes"
+			require_imaging="yes"
 			require_openssl="yes"
 		;;
 		elan)
