@@ -460,20 +460,24 @@ static void generate_main_seed(struct fp_img_dev *idev, struct vfs_init_t *vinit
 	if (!(name_file = fopen(DMI_PRODUCT_NAME_NODE, "r"))) {
 		fp_err("Can't open " DMI_PRODUCT_NAME_NODE);
 		fpi_imgdev_session_error(idev, -EIO);
+		return;
 	}
 	if (!(serial_file = fopen(DMI_PRODUCT_SERIAL_NODE, "r"))) {
 		fp_err("Can't open " DMI_PRODUCT_SERIAL_NODE);
 		fpi_imgdev_session_error(idev, -EIO);
+		goto out_serial;
 	}
 
 	if (fscanf(name_file, "%s", name) != 1) {
 		fp_err("Can't parse product name from " DMI_PRODUCT_NAME_NODE);
 		fpi_imgdev_session_error(idev, -EIO);
+		goto out_closeall;
 	}
 
 	if (fscanf(serial_file, "%s", serial) != 1) {
 		fp_err("Can't parse product name from " DMI_PRODUCT_SERIAL_NODE);
 		fpi_imgdev_session_error(idev, -EIO);
+		goto out_closeall;
 	}
 
 	name_len = strlen(name);
@@ -484,8 +488,10 @@ static void generate_main_seed(struct fp_img_dev *idev, struct vfs_init_t *vinit
 	memcpy(vinit->main_seed, name, name_len + 1);
 	memcpy(vinit->main_seed + name_len + 1, serial, serial_len + 1);
 
-	fclose(name_file);
+out_closeall:
 	fclose(serial_file);
+out_serial:
+	fclose(name_file);
 }
 
 #define usb_operation(func, dev) usb_operation_perform(STRINGIZE(func), func, idev)
