@@ -34,6 +34,11 @@ Install packages:
  * `fprintd`
  * `libfprint-vfs0090-git` from AUR
 
+#### Fedora (tested on 28)
+- sudo dnf install -y libusb*-devel nss nss-devel gtk3-devel glib2-devel openssl openssl-devel libXv-devel gcc-c++
+- `git clone https://github.com/3v1n0/libfprint`
+- `cd fprint && ./autogen.sh && make && sudo make install`
+
 #### Other distros
  - `git clone https://github.com/3v1n0/libfprint`
  - `cd fprint && ./autogen.sh && make && sudo make install`
