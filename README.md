@@ -35,7 +35,7 @@ Install packages:
  * `libfprint-vfs0090-git` from AUR
 
 #### Fedora (tested on 28)
-- sudo dnf install -y libusb*-devel nss nss-devel gtk3-devel glib2-devel openssl openssl-devel libXv-devel gcc-c++
+- `sudo dnf install -y libusb*-devel libtool nss nss-devel gtk3-devel glib2-devel openssl openssl-devel libXv-devel gcc-c++`
 - `git clone https://github.com/3v1n0/libfprint`
 - `cd fprint && ./autogen.sh && make && sudo make install`
 
@@ -57,7 +57,7 @@ Using `fprint_demo` or monitor fprintd from journalctl you should be able to see
 
 ```
 fp:debug [fpi_img_new] length=82944
-fp:debug [fpi_imgdev_image_captured] 
+fp:debug [fpi_imgdev_image_captured]
 fp:debug [fpi_img_detect_minutiae] minutiae scan completed in 0,080257 secs
 fp:debug [fpi_img_detect_minutiae] detected 18 minutiae
 fp:debug [print_data_new] driver=15 devtype=0000
