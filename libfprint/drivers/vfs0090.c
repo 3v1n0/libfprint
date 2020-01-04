@@ -34,8 +34,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "driver_ids.h"
-
 #include "vfs0090.h"
 
 #define STRINGIZE(s) #s
