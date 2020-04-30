@@ -34,10 +34,29 @@ Install packages:
  * `fprintd`
  * `libfprint-vfs0090-git` from AUR
 
-#### Fedora (tested on 28)
-- `sudo dnf install -y libusb*-devel libtool nss nss-devel gtk3-devel glib2-devel openssl openssl-devel libXv-devel gcc-c++`
+#### Fedora (tested on 31 Working with sudo,unlock, and sign in)
+- `sudo dnf install -y libusb*-devel libtool nss nss-devel gtk3-devel glib2-devel openssl openssl-devel libXv-devel gcc-c++ gtk-dock`
 - `git clone https://github.com/3v1n0/libfprint`
-- `cd fprint && ./autogen.sh && make && sudo make install`
+- `cd libfprint`
+- `meson testing`
+- `cd testing`
+- `ninja`
+This will compile the drivers. They are found in the libfprint folder. You now need to manually copy them
+* `Copy libfprint.so and libfprint.so.0.0.0 to /usr/lib64/ and /usr/local/lib then create a soft link libfprint.so.0 -> libfprint.so.0.0.0`
+
+You can now test the fingerprint scanner:
+* `fprintd-enroll`
+
+Now you need to enable fingerprint authentication, run:
+* `sudo authconfig --enablefingerprint --update`
+
+Finally edit /etc/pam.d/gdm-fingerprint and add the line:
+* `auth sufficient pam_fprintd.so`
+
+at the top.
+
+You can now add fingerprints insude setting/users in gnome, or by using the instructions here using fprintd-enroll.
+
 
 #### Other distros
  - `git clone https://github.com/3v1n0/libfprint`
