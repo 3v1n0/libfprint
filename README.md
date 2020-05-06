@@ -55,7 +55,7 @@ Finally edit /etc/pam.d/gdm-fingerprint and add the line:
 
 at the top.
 
-You can now add fingerprints insude setting/users in gnome, or by using the instructions here using fprintd-enroll.
+You can now add fingerprints inside setting/users in gnome, or by using the instructions here using fprintd-enroll.
 
 
 #### Other distros
