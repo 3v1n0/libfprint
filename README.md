@@ -61,6 +61,7 @@ So, in steps (for ubuntu) it would be:
 # Initialize the device
 sudo snap install validity-sensors-tools
 sudo snap connect validity-sensors-tools:raw-usb
+sudo snap connect validity-sensors-tools:hardware-observe
 sudo validity-sensors-tools.initializer
 
 # Add the repository and install the tod package (supports both chips)
