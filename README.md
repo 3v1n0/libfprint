@@ -17,13 +17,14 @@ You can test it using the [examples](tree/vfs0090/examples) or just using `fprin
 
 ### Device initialization and pairing
 
-I racommend using the [validity-sensors-tools/](https://snapcraft.io/validity-sensors-tools/), you can install it in any distro as snap, or you can use it manually from sources located in [my python validity fork](https://github.com/3v1n0/python-validity)
+I recommend using the [validity-sensors-tools/](https://snapcraft.io/validity-sensors-tools/), you can install it in any distro as snap, or you can use it manually from sources located in [my python validity fork](https://github.com/3v1n0/python-validity)
 
 ```bash
 sudo snap install validity-sensors-tools
 
 # Give it access to the usb devices
 sudo snap connect validity-sensors-tools:raw-usb
+sudo snap connect validity-sensors-tools:hardware-observe
 
 # Initialize the device
 sudo validity-sensors-tools.initializer
