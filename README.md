@@ -29,7 +29,7 @@ sudo snap connect validity-sensors-tools:raw-usb
 sudo validity-sensors-tools.initializer
 
 # Test the device
-sudo validity-sensors-tools.led_test
+sudo validity-sensors-tools.led-test
 
 # This is needed and only works in 138a:0097:
 sudo validity-sensors-tools.enroll --finger-id [0-9]
