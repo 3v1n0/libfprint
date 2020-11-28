@@ -160,7 +160,7 @@ foreach driver: drivers
             error('pixman is required for imaging support')
         endif
 
-        git = find_program('git')
+        git = find_program('git', required: false)
         if git.found()
             message('Updating the vfs0090 submodule')
             c = run_command(git, ['submodule', 'update', '--init', '--recursive'])
