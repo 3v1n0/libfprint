@@ -82,6 +82,29 @@ Install packages:
 - `git clone https://github.com/3v1n0/libfprint`
 - `meson libfprint libfprint/_build && sudo ninja -C libfprint/_build install`
 
+#### NixOS
+
+- Enable fprintd as usual via `services.fprintd.enable = true;`
+- Apply this overlay (possibly update rev and sha256, if necessary):
+
+```
+self: super: {
+  libfprint = super.libfprint.overrideAttrs (
+    up: {
+      version = "1.90.1+vfs0090.1";
+      src = super.fetchFromGitHub {
+        owner = "3v1n0";
+        repo = "libfprint";
+        rev = "48f3bb005d256477658273f0592442143740408e";
+        sha256 = "sha256-Ari94tq9Q7LAxh/TOdoRG9J3kAzEnitwwPA5E5HFxxc=";
+        fetchSubmodules = true;
+      };
+      buildInputs = up.buildInputs ++ ([ self.openssl ]);
+    }
+  );
+}
+```
+
 #### Other distros
  - `git clone https://github.com/3v1n0/libfprint`
  - `meson libfprint libfprint/_build && sudo ninja -C libfprint/_build install`
