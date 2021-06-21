@@ -77,11 +77,14 @@ Install packages:
  * `fprintd`
  * `libfprint-vfs0090-git` from AUR
 
-#### Fedora (tested on 28)
-- `sudo dnf install -y libusb*-devel libtool nss nss-devel gtk3-devel glib2-devel openssl openssl-devel libXv-devel gcc-c++`
-- `git clone https://github.com/3v1n0/libfprint`
-- `meson libfprint libfprint/_build && sudo ninja -C libfprint/_build install`
-
+#### Fedora (tested on 33)
+```
+$ sudo dnf install dnf-plugins-core
+$ sudo dnf builddep libfprint
+$ sudo dnf install openssl-devel
+$ git clone https://github.com/3v1n0/libfprint
+$ meson libfprint libfprint/_build && sudo ninja -C libfprint/_build install
+```
 #### NixOS
 
 NixOS has the tod module in nixpkgs-unstable (merged June 2021).
