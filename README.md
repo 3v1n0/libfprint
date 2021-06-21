@@ -84,24 +84,14 @@ Install packages:
 
 #### NixOS
 
-- Enable fprintd as usual via `services.fprintd.enable = true;`
-- Apply this overlay (possibly update rev and sha256, if necessary):
+NixOS has the tod module in nixpkgs-unstable (merged June 2021).
+On release 21.05 or newer, and assuming `pkgsUnstable` is an unstable nixpkgs, configure like this:
 
 ```
-self: super: {
-  libfprint = super.libfprint.overrideAttrs (
-    up: {
-      version = "1.90.1+vfs0090.1";
-      src = super.fetchFromGitHub {
-        owner = "3v1n0";
-        repo = "libfprint";
-        rev = "48f3bb005d256477658273f0592442143740408e";
-        sha256 = "sha256-Ari94tq9Q7LAxh/TOdoRG9J3kAzEnitwwPA5E5HFxxc=";
-        fetchSubmodules = true;
-      };
-      buildInputs = up.buildInputs ++ ([ self.openssl ]);
-    }
-  );
+{
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgsUnstable.libfprint-2-tod1-vfs0090;
 }
 ```
 
